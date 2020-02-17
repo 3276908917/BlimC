@@ -3,7 +3,47 @@ $ Fill out doodle poll
 LITERALLY I JUST WANT TO RUN THE UNIT TESTS RIGHT NOW.
    Why does everything suck?
 
-Merge old and new repositories
+$ Merge old and new repositories
+
+First try addressing how the start positions differ
+    * My best guess: the offset is not added properly. Consider the 
+    following non-consecutive lines from the original:
+        f.seek(int(self.idx_data))
+        f.seek(int(self.t_start * self._n_bytes  * n_ifs * n_chans), 1)
+    
+        * actually, I have implemented the first line:
+            curs += data_index;
+
+        The second definitely is not there, however. What if I could
+        conceptually combine the two earlier statements like so:
+            f.seek(int(self.idx_data + self.t_start * self._n_bytes  * n_ifs * n_chans))
+        
+        in which case the call to the C++ module would have 
+            self.idx_data + self.t_start * self._n_bytes  * n_ifs * n_chans
+        instead of
+            self.idx_data
+
+        Now, if this correction (which is currently implemented in the
+        prototype folder) does not work, investigate the int-casting
+        that was done in the original file_reader, which you did not
+        explicitly perform but entrusted to PyBind.
+
+    * My second guess: overflow, somewhere, somehow
+        The most likely offender is 'offset'
+            offset = i * iScale + j * jScale
+        What if you were to make offset a long long int?
+            A 32-bit number cannot, for example, hold
+            66000^2.
+        Do not spend too long on this! In fact, before you touch
+        any of the code, first have your program output the
+        maximum reached value of offset
+            I say, do not spend too long, because
+            the third and final bullet point is worth
+            investigating, at least cursorily        
+
+    * Consider the following line from the original:
+        f = open(self.filename, 'rb')
+        does 'rb' mean something particular to my implementation?        
 
 Your proposal has more than enough stuff to work on.
 
