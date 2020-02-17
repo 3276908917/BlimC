@@ -1,4 +1,9 @@
-Fill out doodle poll
+$ Fill out doodle poll
+
+LITERALLY I JUST WANT TO RUN THE UNIT TESTS RIGHT NOW.
+   Why does everything suck?
+
+Merge old and new repositories
 
 Your proposal has more than enough stuff to work on.
 

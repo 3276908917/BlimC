@@ -11,7 +11,7 @@ import six
 from astropy.coordinates import Angle
 
 import blimpy.io.sigproc
-import blimpy_read_module as bound_reader
+import blimpy.io.bound_reader as bound_reader
 
 # import pdb;# pdb.set_trace()
 
@@ -598,13 +598,24 @@ class FilReader(Reader):
         n_ifs   = self.header[b'nifs']
 
         # Load binary data
-        #f = open(self.filename, 'rb')
-        #f.seek(int(self.idx_data))
+        f = open(self.filename, 'rb')
+        f.seek(int(self.idx_data))
 
         # now check to see how many integrations requested
         n_ints = self.t_stop - self.t_start
 
-        self.data = bound_reader.read_sigproc_data(self.filename, self.idx_data, n_chans, n_ifs, n_ints, n_chans_selected, self.chan_start_idx, self.chan_stop_idx, self._n_bytes)
+	# You have to remember to get rid of this later
+        print('Get ready for this: they\'re moving it.', bound_reader.add(3, 6))
+		
+        print(self._d_type, self.t_start)
+
+        print(self.filename, n_chans, n_ifs, n_ints, n_chans_selected, self.chan_start_idx, self.chan_stop_idx)
+
+        self.data = bound_reader.read_sigproc_data(self.filename, -1, n_chans, n_ifs, n_ints, n_chans_selected, self.chan_start_idx, self.chan_stop_idx)
+
+        print('File read')
+
+        print(self.data)
 
     def _find_blob_start(self):
         """Find first blob from selection.
