@@ -1,0 +1,47 @@
+<pre>=================================== FAILURES ===================================
+<font color="#CD0000"><b>_____________________ test_waterfall_data_load_range_freq ______________________</b></font>
+
+<font color="#00E602"><b>    def test_waterfall_data_load_range_freq():</b></font>
+<font color="#00E602"><b>        fw = bl.Waterfall(voyager_fil, f_start=8419.24, f_stop=8419.35)</b></font>
+<font color="#00E602"><b>        hw = bl.Waterfall(voyager_h5, f_start=8419.24, f_stop=8419.35)</b></font>
+<font color="#00E602"><b>    </b></font>
+<font color="#00E602"><b>        print(fw.data.shape)</b></font>
+<font color="#00E602"><b>        print(hw.data.shape)</b></font>
+<font color="#00E602"><b>        print(hw.data[0].max(), hw.data[0].argmax())</b></font>
+<font color="#00E602"><b>        print(fw.data[0].max(), fw.data[0].argmax())</b></font>
+<font color="#00E602"><b>        print(hw.data[-1].max(), hw.data[-1].argmax())</b></font>
+<font color="#00E602"><b>        print(fw.data[-1].max(), fw.data[-1].argmax())</b></font>
+<font color="#00E602"><b>    </b></font>
+<font color="#00E602"><b>        # Assert data is loaded to the same shape and has same values</b></font>
+<font color="#00E602"><b>        assert hw.data.shape == fw.data.shape == (16, 1, 39370)</b></font>
+<font color="#00E602"><b>&gt;       assert np.allclose(hw.data, fw.data)</b></font>
+<font color="#CD0000"><b>E       assert False</b></font>
+<font color="#CD0000"><b>E        +  where False = &lt;function allclose at 0x7fb5452299d0&gt;(array([[[1.0942327e+10, 1.1301226e+10, 1.0180617e+10, ...,\n         1.1284243e...0, ...,\n         1.2409384e+10, 1.1524963e+10, 9.8473226e+09]]], dtype=float32), array([[[1.0942327e+10, 1.1301226e+10, 1.0180617e+10, ...,\n         1.1284243e...0, ...,\n         1.2302397e+10, 1.1898351e+10, 1.2678837e+10]]], dtype=float32))</b></font>
+<font color="#CD0000"><b>E        +    where &lt;function allclose at 0x7fb5452299d0&gt; = np.allclose</b></font>
+<font color="#CD0000"><b>E        +    and   array([[[1.0942327e+10, 1.1301226e+10, 1.0180617e+10, ...,\n         1.1284243e...0, ...,\n         1.2409384e+10, 1.1524963e+10, 9.8473226e+09]]], dtype=float32) = Waterfall data: /home/lfinkbeiner/Desktop/blimpy-disaster/tests/test_data/Voyager1.single_coarse.fine_res.h5.data</b></font>
+<font color="#CD0000"><b>E        +    and   array([[[1.0942327e+10, 1.1301226e+10, 1.0180617e+10, ...,\n         1.1284243e...0, ...,\n         1.2302397e+10, 1.1898351e+10, 1.2678837e+10]]], dtype=float32) = Waterfall data: /home/lfinkbeiner/Desktop/blimpy-disaster/tests/test_data/Voyager1.single_coarse.fine_res.fil.data</b></font>
+
+<font color="#CD0000"><b>tests/test_voyager_data_load.py</b></font>:61: AssertionError
+----------------------------- Captured stdout call -----------------------------
+(16, 1, 39370)
+(16, 1, 39370)
+(309333230000.0, 18959)
+(309333230000.0, 18959)
+(274257400000.0, 18996)
+(16403460000.0, 20830)
+<font color="#CDCD00">=============================== warnings summary ===============================</font>
+tests/test_compare_voyager.py::test_plotting_doesnt_cause_exceptions
+  /usr/local/lib/python2.7/dist-packages/scipy/stats/stats.py:977: RuntimeWarning: overflow encountered in square
+    s = s**2
+  /usr/lib/python2.7/dist-packages/numpy/core/_methods.py:75: RuntimeWarning: overflow encountered in reduce
+    ret = umr_sum(arr, axis, dtype, out, keepdims)
+
+tests/test_filterbank_voyager.py::test_plotting_doesnt_cause_exceptions
+  /home/lfinkbeiner/Desktop/blimpy-disaster/blimpy/deprecated/filterbank.py:87: UserWarning: Filterbank is deprecated. Please use Waterfall()
+    warnings.warn(&quot;Filterbank is deprecated. Please use Waterfall()&quot;)
+  /usr/local/lib/python2.7/dist-packages/matplotlib/cbook/deprecation.py:107: MatplotlibDeprecationWarning: Adding an axes using the same arguments as a previous axes currently reuses the earlier instance.  In a future version, a new instance will always be created and returned.  Meanwhile, this warning can be suppressed, and the future behavior ensured, by passing a unique label to each axes instance.
+    warnings.warn(message, mplDeprecation, stacklevel=1)
+
+-- Docs: http://doc.pytest.org/en/latest/warnings.html
+<font color="#CD0000"><b>============== 1 failed, 29 passed, 4 warnings in 2671.87 seconds ==============</b></font>
+</pre>
