@@ -1,4 +1,6 @@
 $ Fill out doodle poll
+* You should delete the old BlimC repo.
+    At this point it can only confuse you.
 
 LITERALLY I JUST WANT TO RUN THE UNIT TESTS RIGHT NOW.
    Why does everything suck?
