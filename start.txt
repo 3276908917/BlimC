@@ -1,3 +1,5 @@
+VirtualBox password: "hey, I didn't mean anything"
+
 $ Fill out doodle poll
 * You should delete the old BlimC repo.
     At this point it can only confuse you.
