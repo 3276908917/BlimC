@@ -8,7 +8,18 @@ $ Merge old and new repositories
 * Uninstall blimpy from the overall system. Create another environment and install vanilla blimpy into that
     * Run unit tests again to make sure that it all still works
 * Create another local clone, then replace three files with the contents of src/prototype
+    * Keep in mind that these are the latest ideas, so you may fail even more tests
+    than you did last time (you failed one test).
+    * If you fail more than one test, you will probably want to revert, piece by piece.
+    The most likely source of additional failures would be the new bound_reader.cpp.
 * Install that in another environment and run unit tests
+* Link your Google slides somewhere in your repo
+
+* If the code finally works, run the unit tests several times for each edition, and compile speed results.
+* Speed looks good? Ask Yuhong and then Danny Price for advice on further testing.
+    * If the speed tests continue to come out positively, we know I can move to a pull request.
+
+------------ Still stuck on the bug?
 
 First try addressing how the start positions differ
     * My best guess: the offset is not added properly. Consider the 
