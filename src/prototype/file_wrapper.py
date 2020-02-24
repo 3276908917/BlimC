@@ -595,15 +595,12 @@ class FilReader(Reader):
 
         n_chans = self.header[b'nchans']
         n_chans_selected = self.selection_shape[self.freq_axis]
-        n_ifs   = self.header[b'nifs']
-
-        # Load binary data
-        #f = open(self.filename, 'rb')
-        #f.seek(int(self.idx_data))
+        n_ifs = self.header[b'nifs']
 
         # now check to see how many integrations requested
         n_ints = self.t_stop - self.t_start
 
+        # Load binary data with our independent CPP module
         self.data = bound_reader.read_sigproc_data(self.filename, self.idx_data + self.t_start * self._n_bytes * n_ifs * n_chans, n_chans, n_ifs, n_ints, n_chans_selected, self.chan_start_idx, self.chan_stop_idx, self._n_bytes)
 
     def _find_blob_start(self):
@@ -662,7 +659,7 @@ class FilReader(Reader):
 
             for blobt in range(updated_blob_dim[self.time_axis]):
 
-                #Load binary data
+                #Load binary data with our separate CPP module
                 with open(self.filename, 'rb') as f:
                     f.seek(int(self.idx_data + self._n_bytes * (blob_start + n_blob*blob_dim[self.time_axis]*self.n_channels_in_file + blobt*self.n_channels_in_file)))
                     dd = np.fromfile(f, count=blob_dim[self.freq_axis], dtype=self._d_type)
