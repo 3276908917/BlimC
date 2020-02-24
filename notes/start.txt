@@ -1,13 +1,14 @@
 VirtualBox password: "hey, I didn't mean anything"
 
 $ Fill out doodle poll
-* You should delete the old BlimC repo.
+$ You should delete the old BlimC repo.
     At this point it can only confuse you.
-
-LITERALLY I JUST WANT TO RUN THE UNIT TESTS RIGHT NOW.
-   Why does everything suck?
-
 $ Merge old and new repositories
+
+* Uninstall blimpy from the overall system. Create another environment and install vanilla blimpy into that
+    * Run unit tests again to make sure that it all still works
+* Create another local clone, then replace three files with the contents of src/prototype
+* Install that in another environment and run unit tests
 
 First try addressing how the start positions differ
     * My best guess: the offset is not added properly. Consider the 
