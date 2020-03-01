@@ -1,4 +1,4 @@
-VirtualBox password: "hey, I didn't mean anything"
+VirtualBox password: "mean anything"
 
 $ Fill out doodle poll
 $ You should delete the old BlimC repo.
