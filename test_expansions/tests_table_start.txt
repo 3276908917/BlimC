@@ -32,3 +32,17 @@ blimpy/waterfall.py                          228     57    75%
 --------------------------------------------------------------
 TOTAL                                       1925    581    70%
 
+Current progress:
+dice: 53 -> 63%
+    38 misses now
+match_fils: 18 -> 31%
+    test_match_fits.py is an all-new file
+    Deprecation notice! Should be 100%
+    51 misses now
+guppy: 49-> >57%
+    something is really slow. I may have just eaten up too
+    much RAM, but I had to ice that last test
+   
+    that is at most 117 misses
+
+That is a dry run of about 2% increase in overall coverage!
