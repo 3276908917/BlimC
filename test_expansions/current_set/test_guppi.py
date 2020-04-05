@@ -35,8 +35,8 @@ def test_guppi():
     gr = GuppiRaw(voyager_raw)
     gr.plot_histogram()
 
-    gr = GuppiRaw(voyager_raw)
-    gr.print_stats()
+#    gr = GuppiRaw(voyager_raw)
+#    gr.print_stats()
 
     # Trickier:
         # I do not quite understand cmd_tool yet

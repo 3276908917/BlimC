@@ -15,12 +15,12 @@ def test_no_args():
         dice.cmd_tool()
 
 def test_no_in_file():
-   '''
+    '''
         This test does not actually increase coverage,
         which causes me to doubt the effectiveness
         of this approach to testing for errors...
-   '''
-   with pytest.raises(SystemExit):
+    '''
+    with pytest.raises(SystemExit):
         args = ['-b 8419.24', '-e 8419.35', '-x', 'h5', '-otest_dice.h5']
         dice.cmd_tool()
     with pytest.raises(SystemExit):

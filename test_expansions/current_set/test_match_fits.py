@@ -27,7 +27,7 @@ def test_batcher():
     bl.match_fils.make_batch_script()
 
 '''
-Decommissioned: the test cannot be run universally...
+Decommissioned: the following test cannot be run universally...
 '''
 #def test_cmd():
 #    args = [voyager_fil, voyager_fil]
