@@ -25,26 +25,32 @@ def test_guppi():
     assert np.array_equal(data_block_1, data_block_casted_1) \
         , "Reading as int8 then casting should be equal to reading directly as complex64"
 
-    # We have to keep instantiating objects because
-    # the plotting routines read data in a manner
-    # destructive to the object.    
+# We have to keep instantiating objects because
+# the plotting routines read data in a manner
+# destructive to the object.    
 
+def test_spectrum():
     gr = GuppiRaw(voyager_raw)
     gr.plot_spectrum()
 
+def test_histogram():
     gr = GuppiRaw(voyager_raw)
     gr.plot_histogram()
 
-#    gr = GuppiRaw(voyager_raw)
-#    gr.print_stats()
+def test_statistics():
+    gr = GuppiRaw(voyager_raw)
+    gr.print_stats()
+    # We are now at 507 seconds for 59% in just this guppy.py script
 
-    # Trickier:
-        # I do not quite understand cmd_tool yet
-        # need a creative use of reset_index, or maybe not
-        # read up on generate_filterbank_header
+# Trickier:
+    # I do not quite understand cmd_tool yet
+        # see the text file on obstacles for why
+        # you cannot test this functionality yet
+    # need a creative use of reset_index, or maybe not
+    # read up on generate_filterbank_header
 
-        # Investigate whether print_stats eats the object
-        # To-do deprecate?
+    # Investigate whether print_stats eats the object
+    # To-do deprecate?
 
 if __name__ == "__main__":
     test_guppi()
