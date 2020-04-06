@@ -14,11 +14,22 @@ guppy: 49-> >57%
 That is a dry run of about 2% increase in overall coverage!
 
 
-Current blocks:
+Current blocks in order of priority:
 
-bl_scrunch
+bl_scrunch and h52fil.py
     * The cmd_tool does not accept arguments passed into the function (since it is supposed to be run from the command line).
+    * However, there is one script which allows this: guppi.py
+        * So far as I can tell, there is one key difference which prevents me from simply modifying, e.g., bl_scrunch directly to have the cmd_tool accept arguments.
+        * These scripts simultaneously define 'opts', and I am not sure what this variable's precise purpose is.
+            * opts, args = p.parse_args(sys.argv[1:])
+            * We even have a different parser object in these scenarios:
+                from optparse import OptionParser
+                ...
+                p = OptionParser()
 
 match_fils
     * script can only be run on BL machines,
         therefore we want to deprecate
+
+__init__.py
+    * This script serves to acquire the most imports possible for the user. A single codecov report is by definition not ever going to hit 100% on this...
