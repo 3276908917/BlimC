@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-    Simple script for quickly making a .fil file from a .h5.
+    Simple script for quicly making an .fil file from a .h5.
 
     ..author: Emilio Enriquez (jeenriquez@gmail.com)
 
