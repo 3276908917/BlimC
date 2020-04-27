@@ -24,6 +24,9 @@ I am still fairly upset about
 Remaining open cases:
 
 waterfall
+    > We were able to restore up to 59 misses by running
+        waterfall_test alone. Now we need to check if the
+        entire testing suite will synergize.
 
 I am guessing that the dozen (of misses across all plotting calls)
 is due to obscure if statements, but you should still give these

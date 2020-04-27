@@ -406,7 +406,7 @@ def cmd_tool(args=None):
     if not info_only:
         from .plotting.config import plt
 
-        print('')
+        print()
 
         if parse_args.blank_dc:
             logger.info("Blanking DC bin")
@@ -449,6 +449,9 @@ def cmd_tool(args=None):
         fileroot = os.path.splitext(filename)[0]
 
         if parse_args.to_hdf5 and parse_args.to_fil:
+            # If this is the last statement anyway,
+            # and consequently, an output file is not generated,
+            # why do we not raise an error?
             raise Warning('Either provide to_hdf5 or to_fil, but not both.')
 
         elif parse_args.to_hdf5:
