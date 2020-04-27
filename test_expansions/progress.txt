@@ -1,4 +1,6 @@
 Current progress:
+we need to repair bl_scrunch ASAP!!
+
 dice: 53 -> 63%
     38 misses now
 match_fils: 18 -> 31%
@@ -10,3 +12,20 @@ guppy: 49->59% (110 misses) -> 70% (82 misses) -> 72%F (77m)
     This 59% took us 507 seconds
 h52fil: 50->82% (8 misses)
 fil2h5: 50->82% (8 misses)
+
+file_wrappy: 101 misses -> 84 misses
+
+I am still fairly upset about
+    guppy
+    dice
+
+    fdile_wrapper just makes me sad
+
+Remaining open cases:
+
+waterfall
+
+I am guessing that the dozen (of misses across all plotting calls)
+is due to obscure if statements, but you should still give these
+a look-see, maybe you can eke out another point worth of coverage.
+

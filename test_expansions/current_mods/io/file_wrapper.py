@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" This modele handles file types.
+""" This model handles file types.
 """
 
 import os
@@ -12,8 +12,6 @@ import six
 from astropy.coordinates import Angle
 
 import blimpy.io.sigproc
-
-# import pdb;# pdb.set_trace()
 
 import logging
 logger = logging.getLogger(__name__)
@@ -418,8 +416,7 @@ class H5Reader(Reader):
         return blob_start
 
     def read_data(self, f_start=None, f_stop=None,t_start=None, t_stop=None):
-        """ Read data
-        """
+        """ Read data """
 
         self._setup_selection_range(f_start=f_start, f_stop=f_stop, t_start=t_start, t_stop=t_stop)
 
@@ -641,8 +638,7 @@ class FilReader(Reader):
         return blob_start
 
     def read_blob(self,blob_dim,n_blob=0):
-        """Read blob from a selection.
-        """
+        """Read blob from a selection. """
 
         n_blobs = self.calc_n_blobs(blob_dim)
         if n_blob > n_blobs or n_blob < 0:

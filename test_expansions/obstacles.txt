@@ -17,3 +17,6 @@ match_fils
 
 __init__.py
     * This script serves to acquire the most imports possible for the user. A single codecov report is by definition not ever going to hit 100% on this...
+
+guppy
+    * The tested script is so horrendously slow that writing tests is a teeth-pulling activity.
