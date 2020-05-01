@@ -30,46 +30,78 @@ At various points the tone of this report will shift toward advice, in case some
 
 \quad \quad I isolate the script that I want to work on.
 
-I recommend
+I recommend fast.sh, fail.sh. They are here in the repository and represent pared-down bash scripts, which makes it easier to rapidly re-run the tests and fix errors.
 
 \section{Observations}
 
-\quad \quad The current areas of transformation are like this.
+\quad \quad The current areas of transformation are like this. This table represents a similar view to what one will receive from running codecov in the shell. I have shortened the script names unless the directory is necessary for disambiguation.
 
 \begin{center}
- \begin{tabular}{||c c||} 
+ \begin{tabular}{||c c c c||} 
  \hline
- $f$ (GHz) & Null Positions (cm)\\ [0.5ex] 
+ Script & Statements & Misses & Coverage (\%)\\ [0.5ex] 
  \hline
- 7.0 & 8.8, 15.15 \\ 
- \hline
- 7.2 & 11.95, 17.15 \\
- \hline
- 7.5 & 10.05, 14.4 \\ 
- \hline
- 8.0 & 10.15, 13.35, 16.7 \\
- \hline
- 8.5 & 9.85, 12.7, 15.25 \\
- \hline 
- 9.0 & 9.3, 12.3, 14.25, 16.7 \\ [1ex] 
- \hline
-\end{tabular}
- \begin{tabular}{||c c||} 
- \hline
- $f$ (GHz) & Null Positions (cm)\\ [0.5ex] 
- \hline
- 9.5 & 8.9, 11.15, 13.35, 15.45, 17.7 \\ 
- \hline
- 10.0 & 8.45, 10.45, 12.3, 14.35, 16.5 \\
- \hline
- 10.5 & 9.95, 11.75, 13.5, 15.45, 17.3 \\
- \hline
- 11.0 & 9.35, 11.4, 12.65, 14.45, 16.2, 17.85 \\
- \hline
- 11.5 & 8.95, 10.45, 12.0, 13.8, 15.15, 16.8 \\
- \hline
- 12.0 & 8.4, 9.85, 11.35, 12.85, 14.4, 15.9, 17.45 \\ [1ex] 
- \hline
+\_\_init\_\_ & 25 & 8 & 68 \\
+\hline
+bl\_scrunch & 45 & 25 & 44 \\
+\hline
+dice & 103 & 48 & 53 \\
+\hline
+ephemeris/\_\_init\_\_ & 3 & 0 & 100 \\
+\hline
+compute\_lsrk & 28 & 0 & 100 \\
+\hline
+compute\_lst & 15 & 4 & 73 \\
+\hline
+ephemeris/config & 9 & 2 & 78 \\
+\hline
+observatory & 41 & 12 & 71 \\
+\hline
+fil2h5 & 42 & 21 & 50 \\
+\hline
+guppi & 271 & 137 & 49 \\
+\hline
+h52fil & 42 & 21 & 59 \\
+\hline
+io/\_\_init\_\_ & 2 & 0 & 100 \\
+\hline
+fil\_writer & 41 & 8 & 80 \\
+\hline
+file\_wrapper & 397 & 101 & 75 \\
+\hline
+hdf\_writer & 87 & 20 & 77 \\
+\hline
+sigproc & 157 & 28 & 82 \\
+\hline
+match\_fils & 74 & 61 & 18 \\
+\hline
+plotting/\_\_init\_\_ & 7 & 0 & 100 \\
+\hline
+plotting/config & 11 & 2 & 82 \\
+\hline
+plot\_all & 69 & 5 & 93 \\
+\hline
+plot\_kurtosis & 16 & 2 & 88 \\
+\hline
+plot\_spectrum & 39 & 6 & 85 \\
+\hline
+plot\_spectrum\_min\_max & 44 & 5 & 89 \\
+\hline
+plot\_time\_series & 26 & 3 & 88 \\
+\hline
+plot\_utils & 28 & 4 & 86 \\
+\hline
+plot\_waterfall & 28 & 4 & 86 \\
+\hline
+utils & 65 & 0 & 100 \\
+\hline
+waterfall & 228 & 57 & 75 \\
+\hline
+&&&
+\\
+\hline
+TOTAL & 1925 & 581 & 70 \\ [1ex] 
+\hline
 \end{tabular}
 \end{center}
 
@@ -80,6 +112,10 @@ I recommend
 \section{Concluding Recommendations}
 
 \quad \quad In conclusion, we need some deprecation notices. We also need to exclude some methods from our tests.
+
+We need more documentation all-around.
+
+Error checking? Not likely, but it is something to think about...
 
 \section{Acknowledgments}
 
