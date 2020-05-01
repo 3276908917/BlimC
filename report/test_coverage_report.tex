@@ -18,11 +18,13 @@
 
 \section{Introduction and Background}
 
-\quad \quad Test coverage is good. We want more. Also documentation. Keep issues alive and open. Also, test centralization.
+\quad \quad The current test coverage of the blimpy repository, as reported by the dedicated shell script in the tests directory, is approximately 70\%. This represents the coverage specifically of a subset of scripts, marked as active. The most obvious example of this is the deprecated folder: scripts which are being phased out are no longer tested for compatibility. 
 
-Some code is unfinished. We do not want this to bring our numbers down.
+Our current figures for code coverage represent an underestimate because there are promising avenues for further exclusion of code. The two primary examples of this are match\_fils.py and file\_wrapper.py. The code of match\_fils.py is largely dominated by a command-line utility which cannot be used outside of Green Bank machines. However, it is still tested by the testing script, so we generate artificial statement misses. Danny Price has recommended that this code be marked for deprecation. In the FilReader class in file\_wrapper.py, there are three unimplemented methods: read\_all, read\_row, and read\_rows. However, it is more accurate to call these unfinished since there is code in the body which is inaccessible because a NotImplementedError has been raised at the beginning of each.
 
-At various points the tone of this report will shift toward advice, in case some future intern wishes to contribute.
+Code exclusion is important, but the main purpose of this report is to document constructive (rather than destructive) improvements in test coverage. The current (and perhaps indefinite; see conclusion) emphasis of the tests appears to be the catching of run-time errors (i.e. script crashes) rather than logical errors (i.e. incorrect results). As a result, code coverage may sometimes be increased in such quick manners as simply calling a plotting routine. In other cases, it can require creative combinations of arguments to ensure that a routine raises the appropriate error.
+
+Finally, there is another primary objective of this project which cannot be concisely documented here, but which is still open and significant to the maintenance of the repository. While surveying the existing tests, I discovered a general limitation in the quantity of specific documentation. I have been documenting my new test cases as I implement them. Documentation in the test cases benefits all future blimpy programmers. If a particular adjustment to the code causes the tests to fail, we want the programmer to immediately know which action failed. The shell will automatically report the name of the test method that failed, but without documentation in the method, one would have to study the code to learn or even relearn its conceptual purpose.
 
 \section{Methods}
 
