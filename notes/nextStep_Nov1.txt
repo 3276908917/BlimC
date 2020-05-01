@@ -16,8 +16,6 @@
 	I am not sure how I would parse accordingly. Collect next six bytes and cast?
 	If it is any kind of floating-point number, it seems that I would have to
 	perform bit-level casting.
-
-
 	> I didn't actually need VS15 specifically. I think that I just needed
 		VS >= VS15
 	> You definitely can use default C++ primitives without any fancy

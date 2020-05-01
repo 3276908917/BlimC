@@ -28,25 +28,16 @@ HDFI5 filterbank code: Python to C++
 * Let's do some optimization: file processing 
 * We don't want people to just download entire terabyte files.
 
-PLEASE:
-* Add me to the blimpy channel <- Steve
-* Emilio <- got any optimization stuff for me?
-$ Yuhong <- got any other people to whom you can refer me?
-	* Just Danny and Emilio on the Slack channel
-
 ? I am guessing that, currently, raw compute is the main issue.
-	Since you're asking me to write C++ and not GPU interface, I further
-	imagine that you are asking me to specifically streamline
-	sequential programs.
+	Since we are writing C++ and not at a GPU interface, 
+	we expect to specifically streamline sequential programs.
 
-* Danny is in Australia
 * Matt Lebowsky is in public data archiving and formatting
 	* GNU radio community
 
-Essentially: run the blimpy code in C++ -> API! extend functionality?? whoah
+Essentially: run the blimpy code in C++
 What do I remember from 61C
-* Understand what O3 already does (sometimes,
-	your assignment of pointer chains to local variables can backfire!
+* Understand what O3 already does (sometimes, your assignment of pointer chains to local variables can backfire!)
 * Loop unrolling
 * Function unrolling (i.e. cut down on calls to brief functions;
 	instead, put the small functions directly in place of the calls)
@@ -59,12 +50,8 @@ What do I remember from 61C
 * Get creative! Experiment!
 
 Fallthrough condition:
-* What is turboSETI?
 * MeerKAT: taking data faster than we can store it. Daniel Czech? Dave McMarr?
 x sigMF: another version of the final header
 ~ Andrew: hybrid cloud, data archival
 	"Currently we're paranoid about chopping the data in chunks"
 ~ broken JS web applet
-
-Turns out that JS is indeed important. Good thing Khan Academy is around!
-What is a "full stack web developer"?

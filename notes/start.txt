@@ -1,9 +1,6 @@
 VirtualBox password: "mean anything"
-
-$ Fill out doodle poll
-$ You should delete the old BlimC repo.
-    At this point it can only confuse you.
-$ Merge old and new repositories
+This is not a security hazard for a public repository, because
+one would first have to remotely access the host machine without permission.
 
 * Uninstall blimpy from the overall system. Create another environment and install vanilla blimpy into that
     * Run unit tests again to make sure that it all still works
@@ -60,8 +57,4 @@ First try addressing how the start positions differ
 
     * Consider the following line from the original:
         f = open(self.filename, 'rb')
-        does 'rb' mean something particular to my implementation?        
-
-Your proposal has more than enough stuff to work on.
-
-Slack people more often, and keep them posted
+        does 'rb' mean something particular to my implementation?
