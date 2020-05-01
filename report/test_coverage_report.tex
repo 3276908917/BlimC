@@ -34,7 +34,7 @@ The blimpy repository includes two scripts necessary for running the complete su
 
 \section{Coverage Results}
 
-\quad \quad The following two tables record the initial (as of February 2020) state of test coverage as well as the state as of the writing of this report. Each table represents a similar view to what one will receive from running run\_tests.sh in the shell. I have shortened the script names unless the directory is necessary for disambiguation.
+\quad \quad The following table records the initial (as of February 2020) state of test coverage. It represents a view similar to what one will receive from running run\_tests.sh in the shell. I have shortened the script names unless the directory is necessary for disambiguation.
 
 \begin{center}
  \begin{tabular}{||c c c c||} 
@@ -104,6 +104,10 @@ TOTAL & 1925 & 581 & 70 \\ [1ex]
 \hline
 \end{tabular}
 
+\
+
+In this next table, I report the details of scripts for whom testing has increased. The precise numbers are accurate as of the writing of this report.
+
  \begin{tabular}{||c c c c||} 
  \hline
  Script & Misses & Decrease & Latest Coverage (\%)\\ [0.5ex] 
@@ -118,7 +122,7 @@ guppi & 77 & 60 & 72 \\
 \hline
 h52fil & 8 & 13 & 82 \\
 \hline
-file\_wrapper & 397 & 84 & 79 \\
+file\_wrapper & 66* & 17 & 83* \\
 \hline
 match\_fils & 0* & 10 & 100* \\
 \hline
@@ -127,7 +131,7 @@ waterfall & 51 & 6 & 78 \\
 &&&
 \\
 \hline
-TOTAL$^\dagger$ & 1925 & 581 & 70 \\ [1ex] 
+TOTAL$^\dagger$ & 1931 & 403 & 79 \\ [1ex] 
 \hline
 \end{tabular}
 \end{center}
