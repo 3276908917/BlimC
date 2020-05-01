@@ -22,7 +22,7 @@
 
 \section{Introduction and Background}
 
-\quad \quad Test coverage is good. We want more. Also documentation. Keep issues alive and open.
+\quad \quad Test coverage is good. We want more. Also documentation. Keep issues alive and open. Also, test centralization.
 
 At various points the tone of this report will shift toward advice, in case some future intern wishes to contribute.
 
@@ -61,7 +61,7 @@ fil2h5 & 42 & 21 & 50 \\
 \hline
 guppi & 271 & 137 & 49 \\
 \hline
-h52fil & 42 & 21 & 59 \\
+h52fil & 42 & 21 & 50 \\
 \hline
 io/\_\_init\_\_ & 2 & 0 & 100 \\
 \hline
@@ -104,67 +104,40 @@ TOTAL & 1925 & 581 & 70 \\ [1ex]
 \hline
 \end{tabular}
 
- \begin{tabular}{||c c c c c||} 
+ \begin{tabular}{||c c c c||} 
  \hline
- Script & Statements & Misses & Change & Coverage (\%)\\ [0.5ex] 
- \hline
-\_\_init\_\_ & 25 & 8 & 68 \\
+ Script & Misses & Decrease & Latest Coverage (\%)\\ [0.5ex] 
 \hline
-bl\_scrunch & 45 & 25 & 44 \\
+bl\_scrunch & 25 & 12 & 72 \\
 \hline
-dice & 103 & 48 & 53 \\
+dice & 38 & 10 & 63 \\
 \hline
-compute\_lst & 15 & 4 & 73 \\
+fil2h5 & 8 & 13 & 82 \\
 \hline
-ephemeris/config & 9 & 2 & 78 \\
+guppi & 77 & 60 & 72 \\
 \hline
-observatory & 41 & 12 & 71 \\
+h52fil & 8 & 13 & 82 \\
 \hline
-fil2h5 & 42 & 21 & 50 \\
+file\_wrapper & 397 & 84 & 79 \\
 \hline
-guppi & 271 & 137 & 49 \\
+match\_fils & 0* & 10 & 100* \\
 \hline
-h52fil & 42 & 21 & 59 \\
-\hline
-fil\_writer & 41 & 8 & 80 \\
-\hline
-file\_wrapper & 397 & 101 & 75 \\
-\hline
-hdf\_writer & 87 & 20 & 77 \\
-\hline
-sigproc & 157 & 28 & 82 \\
-\hline
-match\_fils & 74 & 61 & 18 \\
-\hline
-plotting/config & 11 & 2 & 82 \\
-\hline
-plot\_all & 69 & 5 & 93 \\
-\hline
-plot\_kurtosis & 16 & 2 & 88 \\
-\hline
-plot\_spectrum & 39 & 6 & 85 \\
-\hline
-plot\_spectrum\_min\_max & 44 & 5 & 89 \\
-\hline
-plot\_time\_series & 26 & 3 & 88 \\
-\hline
-plot\_utils & 28 & 4 & 86 \\
-\hline
-plot\_waterfall & 28 & 4 & 86 \\
-\hline
-waterfall & 228 & 57 & 75 \\
+waterfall & 51 & 6 & 78 \\
 \hline
 &&&
 \\
 \hline
-TOTAL & 1925 & 581 & 70 \\ [1ex] 
+TOTAL$^\dagger$ & 1925 & 581 & 70 \\ [1ex] 
 \hline
 \end{tabular}
 \end{center}
 
+* asterisk indicates deprecation-assisted numbers
+* dagger indicates we are including numbers from unchanged tests
+
 \section{Current Efforts and Obstacles}
 
-\quad \quad Guppi sucks!! I HATE it! Especially because we keep getting killed.
+\quad \quad The guppi file-handling script guppi.py represented a thorn in the side of this project. Interacting with this script was especially slow. On many occasions, even running tests on this script in isolation, the code-coverage routine would experience a time-out, killing the test session. In visually analyzing the script, I have not come across major areas which could be sped up to resolve this issue. However, virtually all of the user-facing methods (e.g. histogram) deplete the file. As a consequence, each test case must create a new guppi-handler object from scratch. This places a major strain on the hard disk, the slowest piece of a computer.
 
 bl\_scrunch and h52fil.py
     
@@ -179,7 +152,9 @@ Do we want more data? The test cases will continue to slow down. Diminishing ret
 
 \quad \quad In conclusion, we need some deprecation notices (match\_fils.py). We also need to exclude some methods from our tests, because they raise NotImplementedError (file\_wrapper.py).
 
-We need more documentation all-around.
+Guppi sucks!! I HATE it! Especially because we keep getting killed. File depletion is a major nuisance. And, hard-coding represents a total off-shoot of this project.
+
+We need more documentation all-around. Some methods are fairly self-explanatory, they just run one function and make sure that there are no runtime errors. Other methods, especially those involving command line options, are a bit more involved.
 
 Do we want more rigorous checks for accuracy? The development process will continue to slow down.
 Error checking? Not likely, but it is something to think about...
