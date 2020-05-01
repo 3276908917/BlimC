@@ -28,9 +28,13 @@ Finally, there is another primary objective of this project which cannot be conc
 
 \section{Methods}
 
-\quad \quad I isolate the script that I want to work on. I also isolate individual methods, at least for guppi
+\quad \quad The blimpy repository includes two scripts necessary for running the complete suite of tests: download\_data.sh and run\_tests.sh. In this repository I have included two pared-down bash scripts, fast.sh, fail.sh. fail.sh is the fastest, but can only be used to check whether new test cases pass. fast.sh is the next fastest, and will check the coverage of all scripts in the blimpy directory. Simpler bash scripts have the advantage of lower overhead, which allows the programmer to easily switch between writing tests and examining their impact. The principle downside of this pared-down approach is that fast.sh ignores repository warnings regarding which scripts are to be tested. Consequently, the programmer will receive coverage results about scripts in the directories `calib\_utils' and `deprecated' (observe the absence of such scripts from the tables below).
 
-The blimpy repository includes two scripts necessary for running the complete suite of tests: download\_data.sh and run\_tests.sh. In this repository I have included two pared-down bash scripts, fast.sh, fail.sh. fail.sh is the fastest, but can only be used to check whether new test cases pass. fast.sh is the next fastest, and will check the coverage of all scripts in the blimpy directory. Simpler bash scripts have the advantage of lower overhead, which allows the programmer to easily switch between writing tests and examining their impact. The principle downside of this pared-down approach is that fast.sh ignores repository warnings regarding which scripts are to be tested. Consequently, the programmer will receive coverage results about scripts in the directories `calib\_utils' and `deprecated' (observe the absence of such scripts from the tables below). 
+To further decrease the wait time (between writing and testing a test) I practice isolation on multiple layers. First, I move to a separate directory all scripts which I am not currently editing, so that the shell script will only run one test script at a time. For some of the slower scripts such as guppi.py (see `Current Efforts and Obstacles') I also isolate all test-functions except for the one I am currently developing. While the coverage numbers will decline in isolated testing environments, the programmer need only seek that the coverage increases $compared$ to point at which the isolation began.
+
+On this topic, I have two recommendations for future test development. One is centralization, of which file\_wrapper.py is the worst offender. There is a dedicated test script, but if one runs this script by itself, the coverage for file\_wrapper.py decreases dramatically (by contrast, most other scripts will maintain roughly the same level of coverage for their tested script if you exclude the remaining tests). Test centralization is important because it facilitates the isolation approach. When isolating the file\_wrapper test script, the file\_wrapper coverage decreases so dramatically that one would lack a good sense of which tests were redundant; for example, one could add a function and notice a coverage increase, but that increase could evaporate when all tests are run together (some unnoticed lack of synergy between test cases). I have expanded test\_file\_wrapper.py to an extent which is not reflected in the coverage increases because I worked on enhancing the centralization of that script.
+
+The second recommendation is compartmentalization. Within a testing script, there are several instances of single methods testing multiple features (for example, h5 and guppi file handling). If we focus on greater quantities of smaller methods which test discrete features, test failures will be easier to debug.
 
 \section{Coverage Results}
 
@@ -136,7 +140,7 @@ TOTAL$^\dagger$ & 1931 & 403 & 79 \\ [1ex]
 \end{tabular}
 \end{center}
 
-The asterisks indicate fields for which I am factoring-in the deprecations and exclusions that I mention in the `Concluding Recommendations' section. The dagger indicates that the total includes numbers from the tests which were not shown (because their coverage had not increased).
+The asterisks indicate fields for which I am factoring-in the deprecations and exclusions that I mention in the `Concluding Recommendations' section. The dagger indicates that the total includes numbers from the tests which were not shown (because their coverage had not changed).
 
 %axe 35
 
