@@ -16,19 +16,17 @@
 
 \maketitle
 
-%\begin{abstract}
-% I think an abstract would be a bit pompous for such an informal report.
-%\end{abstract}
-
 \section{Introduction and Background}
 
 \quad \quad Test coverage is good. We want more. Also documentation. Keep issues alive and open. Also, test centralization.
+
+Some code is unfinished. We do not want this to bring our numbers down.
 
 At various points the tone of this report will shift toward advice, in case some future intern wishes to contribute.
 
 \section{Methods}
 
-\quad \quad I isolate the script that I want to work on.
+\quad \quad I isolate the script that I want to work on. I also isolate individual methods, at least for guppi
 
 The blimpy repository includes two scripts necessary for running the complete suite of tests: download\_data.sh and run\_tests.sh. In this repository I have included two pared-down bash scripts, fast.sh, fail.sh. fail.sh is the fastest, but can only be used to check whether new test cases pass. fast.sh is the next fastest, and will check the coverage of all scripts in the blimpy directory. Simpler bash scripts have the advantage of lower overhead, which allows the programmer to easily switch between writing tests and examining their impact. The principle downside of this pared-down approach is that fast.sh ignores repository warnings regarding which scripts are to be tested. Consequently, the programmer will receive coverage results about scripts in the directories `calib\_utils' and `deprecated' (observe the absence of such scripts from the tables below). 
 
@@ -136,21 +134,19 @@ TOTAL$^\dagger$ & 1931 & 403 & 79 \\ [1ex]
 \end{tabular}
 \end{center}
 
-* asterisk indicates deprecation-assisted numbers
-* dagger indicates we are including numbers from unchanged tests
+The asterisks indicate fields for which I am factoring-in the deprecations and exclusions that I mention in the `Concluding Recommendations' section. The dagger indicates that the total includes numbers from the tests which were not shown (because their coverage had not increased).
+
+%axe 35
 
 \section{Current Efforts and Obstacles}
 
 \quad \quad The guppi file-handling script guppi.py represented a thorn in the side of this project. Interacting with this script was especially slow. On many occasions, even running tests on this script in isolation, the code-coverage routine would experience a time-out, killing the test session. In visually analyzing the script, I have not come across major areas which could be sped up to resolve this issue. However, virtually all of the user-facing methods (e.g. histogram) deplete the file. As a consequence, each test case must create a new guppi-handler object from scratch. This places a major strain on the hard disk, the slowest piece of a computer.
 
-bl\_scrunch and h52fil.py
-    
-		* The cmd\_tool does not accept arguments passed into the function (since it is supposed to be run from the command line).
-		
-    * However, there is one script which allows this: guppi.py
+One ongoing project is the accessing of command-line tools for testing purposes. Several scripts such as bl\_scrunch and h52fil.py come packaged with methods which allow the user to analyze and plot data by passing in arguments directly from the shell. All such functions include a line which relies on an external dependency to parse console inputs. guppi.py has such a tool, but it also features a parameter in the method should the programmer wish to access the tool from a script. I have been modifying the blimpy scripts so that more of the command line methods have this feature; it allows the test scripts to easily pass in different inputs, verifying the rigor of the code.
 
-Do we want more data? The test cases will continue to slow down. Diminishing returns,
-	but we will be able to weed out if statements every here and there
+Some issues are broader in scope and arguably are not well-suited for a nuts-and-bolts project such as this, or at least for an intern with less experience with the aims and priorities of the repository as a whole. For example, virtually all of the test cases rely on a set of Voyager data in the .h5 and .fil formats. We are essentially using a single source for all tests. Consequently, there are many if statements which are not executed because they bifurcate around properties specific to the file's data type (small integers, large integers, or floats), number and sizes of channels, etc.
+
+This gets into an issue of diminishing returns. Introducing entire additional data sets will undoubtedly slow down the testing process, even using the isolation approach that I described in the methods section.
 
 \section{Concluding Recommendations}
 
