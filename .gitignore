@@ -1,2 +1,6 @@
 notes_to_self
 *.DS_Store
+*.aux
+*.bbl
+*.blg
+*.log
