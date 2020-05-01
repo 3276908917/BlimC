@@ -1,9 +1,0 @@
-sudo apt-get update
-sudo apt-get install libhdf5-serial-dev gfortran python3-pip git pkg-config curl pip
-pip install --upgrade pip setuptools wheel
-pip install numpy scipy matplotlib
-pip install git+https://github.com/h5py/h5py@8d96a14c3508de1bde77aec5db302e478dc5dbc4
-pip install git+https://github.com/kiyo-masui/bitshuffle
-git clone https://github.com/UCBerkeleySETI/blimpy.git
-cd blimpy/
-pip install ".[full]"

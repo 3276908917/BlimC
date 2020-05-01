@@ -1,6 +1,0 @@
-include LICENSE
-include *.md
-include MANIFEST.in
-include requirements*.txt
-include tests
-recursive-include tests *
