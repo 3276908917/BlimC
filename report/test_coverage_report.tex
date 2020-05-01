@@ -22,7 +22,7 @@
 
 \section{Introduction and Background}
 
-\quad \quad Test coverage is good. We want more.
+\quad \quad Test coverage is good. We want more. Also documentation. Keep issues alive and open.
 
 At various points the tone of this report will shift toward advice, in case some future intern wishes to contribute.
 
@@ -30,11 +30,11 @@ At various points the tone of this report will shift toward advice, in case some
 
 \quad \quad I isolate the script that I want to work on.
 
-I recommend fast.sh, fail.sh. They are here in the repository and represent pared-down bash scripts, which makes it easier to rapidly re-run the tests and fix errors.
+The blimpy repository includes two scripts necessary for running the complete suite of tests: download\_data.sh and run\_tests.sh. In this repository I have included two pared-down bash scripts, fast.sh, fail.sh. fail.sh is the fastest, but can only be used to check whether new test cases pass. fast.sh is the next fastest, and will check the coverage of all scripts in the blimpy directory. Simpler bash scripts have the advantage of lower overhead, which allows the programmer to easily switch between writing tests and examining their impact. The principle downside of this pared-down approach is that fast.sh ignores repository warnings regarding which scripts are to be tested. Consequently, the programmer will receive coverage results about scripts in the directories `calib\_utils' and `deprecated' (observe the absence of such scripts from the tables below). 
 
-\section{Observations}
+\section{Coverage Results}
 
-\quad \quad The current areas of transformation are like this. This table represents a similar view to what one will receive from running codecov in the shell. I have shortened the script names unless the directory is necessary for disambiguation.
+\quad \quad The following two tables record the initial (as of February 2020) state of test coverage as well as the state as of the writing of this report. Each table represents a similar view to what one will receive from running run\_tests.sh in the shell. I have shortened the script names unless the directory is necessary for disambiguation.
 
 \begin{center}
  \begin{tabular}{||c c c c||} 
@@ -103,22 +103,85 @@ waterfall & 228 & 57 & 75 \\
 TOTAL & 1925 & 581 & 70 \\ [1ex] 
 \hline
 \end{tabular}
+
+ \begin{tabular}{||c c c c c||} 
+ \hline
+ Script & Statements & Misses & Change & Coverage (\%)\\ [0.5ex] 
+ \hline
+\_\_init\_\_ & 25 & 8 & 68 \\
+\hline
+bl\_scrunch & 45 & 25 & 44 \\
+\hline
+dice & 103 & 48 & 53 \\
+\hline
+compute\_lst & 15 & 4 & 73 \\
+\hline
+ephemeris/config & 9 & 2 & 78 \\
+\hline
+observatory & 41 & 12 & 71 \\
+\hline
+fil2h5 & 42 & 21 & 50 \\
+\hline
+guppi & 271 & 137 & 49 \\
+\hline
+h52fil & 42 & 21 & 59 \\
+\hline
+fil\_writer & 41 & 8 & 80 \\
+\hline
+file\_wrapper & 397 & 101 & 75 \\
+\hline
+hdf\_writer & 87 & 20 & 77 \\
+\hline
+sigproc & 157 & 28 & 82 \\
+\hline
+match\_fils & 74 & 61 & 18 \\
+\hline
+plotting/config & 11 & 2 & 82 \\
+\hline
+plot\_all & 69 & 5 & 93 \\
+\hline
+plot\_kurtosis & 16 & 2 & 88 \\
+\hline
+plot\_spectrum & 39 & 6 & 85 \\
+\hline
+plot\_spectrum\_min\_max & 44 & 5 & 89 \\
+\hline
+plot\_time\_series & 26 & 3 & 88 \\
+\hline
+plot\_utils & 28 & 4 & 86 \\
+\hline
+plot\_waterfall & 28 & 4 & 86 \\
+\hline
+waterfall & 228 & 57 & 75 \\
+\hline
+&&&
+\\
+\hline
+TOTAL & 1925 & 581 & 70 \\ [1ex] 
+\hline
+\end{tabular}
 \end{center}
 
 \section{Current Efforts and Obstacles}
 
-\quad \quad Guppi sucks!! I HATE it!
+\quad \quad Guppi sucks!! I HATE it! Especially because we keep getting killed.
+
+bl\_scrunch and h52fil.py
+    
+		* The cmd\_tool does not accept arguments passed into the function (since it is supposed to be run from the command line).
+		
+    * However, there is one script which allows this: guppi.py
+
+Do we want more data? The test cases will continue to slow down. Diminishing returns,
+	but we will be able to weed out if statements every here and there
 
 \section{Concluding Recommendations}
 
-\quad \quad In conclusion, we need some deprecation notices. We also need to exclude some methods from our tests.
+\quad \quad In conclusion, we need some deprecation notices (match\_fils.py). We also need to exclude some methods from our tests, because they raise NotImplementedError (file\_wrapper.py).
 
 We need more documentation all-around.
 
+Do we want more rigorous checks for accuracy? The development process will continue to slow down.
 Error checking? Not likely, but it is something to think about...
-
-\section{Acknowledgments}
-
-\quad \quad Danny Price? Should I even have this section?
 
 \end{document}
