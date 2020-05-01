@@ -156,13 +156,10 @@ This gets into an issue of diminishing returns. Introducing entire additional da
 
 \section{Concluding Recommendations}
 
-\quad \quad In conclusion, we need some deprecation notices (match\_fils.py). We also need to exclude some methods from our tests, because they raise NotImplementedError (file\_wrapper.py).
+\quad \quad In conclusion, some quick and large improvements in code coverage would come from excluding the appropriate sections of the code, which are not in use. We need to deprecate the command-line tool in match\_fils.py and we need to formally exclude the incomplete methods in file\_wrapper.py.
 
-Guppi sucks!! I HATE it! Especially because we keep getting killed. File depletion is a major nuisance. And, hard-coding represents a total off-shoot of this project.
+Depending on the popularity of guppi.py, streamlining will vary as a priority. Currently, however, the script represents a major bottleneck when trying to test the entire repository at once. At the very least, I learned that generate\_filterbank\_header relies on several hard-coded and other un-calculated quantities: in any case, the script is unfinished. There seem to be several methods with comments recommending relocation to a plotting script. This could be a promising near-future tactic for circumventing the file depletion exacerbation of disk reads.
 
-We need more documentation all-around. Some methods are fairly self-explanatory, they just run one function and make sure that there are no runtime errors. Other methods, especially those involving command line options, are a bit more involved.
-
-Do we want more rigorous checks for accuracy? The development process will continue to slow down.
-Error checking? Not likely, but it is something to think about...
+Finally, there remain philosophical issues on the horizon. The routes of continuation for this project are fairly straightforward for the short term. However, as we approach near-total coverage of blimpy for runtime errors and documentation of tests, the question of logical errors may become more relevant. As mentioned in the introduction, there are only a few tests that test to make sure that the outputs are what we expect them to be. If this issue ever becomes more of a testing priority, there will be great time demands as we seek to independently calculate the values that we expect from blimpy.
 
 \end{document}
