@@ -28,7 +28,6 @@ def test_guppi():
 # the plotting routines read data in a manner
 # destructive to the object.    
 
-
 def test_spectrum():
     gr = bl.guppi.GuppiRaw(voyager_raw)
     gr.plot_spectrum()
@@ -40,30 +39,10 @@ def test_histogram():
 def test_statistics():
     gr = bl.guppi.GuppiRaw(voyager_raw)
     gr.print_stats()
-    # We are now at 507 seconds for 59% in just this guppy.py script
 
 def test_fil_header():
     gr = bl.guppi.GuppiRaw(voyager_raw)
     gr.generate_filterbank_header()
-
-#'''
-#def test_cmd_line():
-#    '''
-#    #Broken test: does not detect the arguments
-#    '''
-#    args = [voyager_raw]
-#        # I have also tried args = [voyager_raw]
-#    bl.guppi.cmd_tool(args)
-
-# Trickier:
-    # I do not quite understand cmd_tool yet
-        # see the text file on obstacles for why
-        # you cannot test this functionality yet
-    # need a creative use of reset_index, or maybe not
-    # read up on generate_filterbank_header
-
-    # Investigate whether print_stats eats the object
-    # To-do deprecate?
 
 if __name__ == "__main__":
     test_guppi()
