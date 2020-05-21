@@ -81,7 +81,7 @@ def cmd_tool(args=None):
     if args is None:
         opts, args = p.parse_args(sys.argv[1:])
     else:
-        raise AssertionError("I do not know from whither opts and args would come.")
+        opts, args = p.parse_args(args)
 
     if len(args) != 1:
         logger.info('Please specify a ' + str(len(args)) + ' file name \nExiting.')

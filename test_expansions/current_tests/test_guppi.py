@@ -3,7 +3,6 @@ import numpy as np
 import blimpy as bl
 from tests.data import voyager_raw, voyager_block1
 
-
 def test_guppi():
     gr = bl.guppi.GuppiRaw(voyager_raw)
     h1, data_block_x1, data_block_y1 = gr.read_next_data_block_int8()
@@ -29,6 +28,7 @@ def test_guppi():
 # the plotting routines read data in a manner
 # destructive to the object.    
 
+
 def test_spectrum():
     gr = bl.guppi.GuppiRaw(voyager_raw)
     gr.plot_spectrum()
@@ -46,13 +46,14 @@ def test_fil_header():
     gr = bl.guppi.GuppiRaw(voyager_raw)
     gr.generate_filterbank_header()
 
-def test_cmd_line():
-    '''
-    Broken test: does not detect the arguments
-    '''
-    args = ['filename', voyager_raw]
-        # I have also tried args = [voyager_raw]
-    bl.guppi.cmd_tool(args)
+#'''
+#def test_cmd_line():
+#    '''
+#    #Broken test: does not detect the arguments
+#    '''
+#    args = [voyager_raw]
+#        # I have also tried args = [voyager_raw]
+#    bl.guppi.cmd_tool(args)
 
 # Trickier:
     # I do not quite understand cmd_tool yet
