@@ -38,15 +38,21 @@ def __write_to_hdf5_heavy(wf, filename_out, f_scrunch=None, *args, **kwargs):
 
     block_size = 0
 
-    #Note that a chunk is not a blob!!
-    chunk_dim = wf._get_chunk_dimensions()
+    # Note that a chunk is not a blob!!
+    # chunk_dim = wf._get_chunk_dimensions() <-- seems intended for raw to fil
+    # And, chunk dimensions should not exceed the Waterfall selection shape dimensions.
+    chunk_list = list(wf._get_chunk_dimensions())
+    for ix in range(0, len(chunk_list)):
+        if chunk_list[ix] > wf.selection_shape[ix]:
+            chunk_list[ix] = wf.selection_shape[ix]
+    chunk_dim = tuple(chunk_list)
     blob_dim  = wf._get_blob_dimensions(chunk_dim)
     n_blobs   = wf.container.calc_n_blobs(blob_dim)
 
     with h5py.File(filename_out, 'w') as h5:
 
-        h5.attrs[b'CLASS'] = b'FILTERBANK'
-        h5.attrs[b'VERSION'] = b'1.0'
+        h5.attrs['CLASS'] = 'FILTERBANK'
+        h5.attrs['VERSION'] = '1.0'
 
         bs_compression = hdf5plugin.Bitshuffle(nelems=0, lz4=True)['compression']
         bs_compression_opts = hdf5plugin.Bitshuffle(nelems=0, lz4=True)['compression_opts']
@@ -160,7 +166,7 @@ def __write_to_hdf5_light(wf, filename_out, f_scrunch=None, *args, **kwargs):
         else:
             wf.logger.info('Frequency scrunching by %i' % f_scrunch)
             data_out = utils.rebin(wf.data, n_z=f_scrunch)
-            wf.header[b'foff'] *= f_scrunch
+            wf.header['foff'] *= f_scrunch
 
         dset = h5.create_dataset('data',
                                  data=data_out,
