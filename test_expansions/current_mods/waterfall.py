@@ -114,14 +114,14 @@ class Waterfall(object):
             self.__load_data()
 
         elif header_dict is not None and data_array is not None:
-            self.filename = b''
+            self.filename = ''
             self.header = header_dict
             self.data = data_array
             self.n_ints_in_file = 0
             self._setup_freqs()
 
         else:
-            self.filename = b''
+            self.filename = ''
 
         # Attach methods
         self.plot_spectrum         = six.create_bound_method(plot_spectrum, self)
@@ -156,16 +156,16 @@ class Waterfall(object):
         """ Updates the header information from the original file to the selection. """
 
         #Updating frequency of first channel from selection
-        if self.header[b'foff'] < 0:
-            self.header[b'fch1'] = self.container.f_stop
+        if self.header['foff'] < 0:
+            self.header['fch1'] = self.container.f_stop
         else:
-            self.header[b'fch1'] = self.container.f_start
+            self.header['fch1'] = self.container.f_start
 
         #Updating number of coarse channels.
-        self.header[b'nchans'] = self.container.selection_shape[self.freq_axis]
+        self.header['nchans'] = self.container.selection_shape[self.freq_axis]
 
         #Updating time stamp for first time bin from selection
-        self.header[b'tstart'] = self.container.populate_timestamps(update_header=True)
+        self.header['tstart'] = self.container.populate_timestamps(update_header=True)
 
     def info(self):
         """ Print header information and other derived information. """
@@ -179,7 +179,7 @@ class Waterfall(object):
                 val = val.to_string(unit=u.deg, sep=':')
             if key in ('foff', 'fch1'):
                 val *= u.MHz
-            if key == b'tstart':
+            if key == 'tstart':
                 print("%16s : %32s" % ("tstart (ISOT)", Time(val, format='mjd').isot))
                 key = "tstart (MJD)"
             print("%16s : %32s" % (key, val))
@@ -231,17 +231,17 @@ class Waterfall(object):
         """
 
         #Usually '.0000.' is in self.filename
-        if np.abs(self.header[b'foff']) < 1e-5:
+        if np.abs(self.header['foff']) < 1e-5:
             logger.info('Detecting high frequency resolution data.')
             chunk_dim = (1,1,1048576) #1048576 is the number of channels in a coarse channel.
             return chunk_dim
         #Usually '.0001.' is in self.filename
-        elif np.abs(self.header[b'tsamp']) < 1e-3:
+        elif np.abs(self.header['tsamp']) < 1e-3:
             logger.info('Detecting high time resolution data.')
             chunk_dim = (2048,1,512) #512 is the total number of channels per single band (ie. blc00)
             return chunk_dim
         #Usually '.0002.' is in self.filename
-        elif np.abs(self.header[b'foff']) < 1e-2 and np.abs(self.header[b'foff'])  >= 1e-5:
+        elif np.abs(self.header['foff']) < 1e-2 and np.abs(self.header['foff'])  >= 1e-5:
             logger.info('Detecting intermediate frequency and time resolution data.')
             chunk_dim = (10,1,65536)  #65536 is the total number of channels per single band (ie. blc00)
 #            chunk_dim = (1,1,65536/4)
@@ -289,11 +289,11 @@ class Waterfall(object):
         i1 = np.argmin(np.abs(self.freqs - f_stop))
 
         if i0 < i1:
-            plot_f    = self.freqs[i0:i1 + 1]
-            plot_data = np.squeeze(self.data[t_start:t_stop, ..., i0:i1 + 1])
+            plot_f    = self.freqs[i0:i1]
+            plot_data = np.squeeze(self.data[t_start:t_stop, ..., i0:i1])
         else:
-            plot_f    = self.freqs[i1:i0 + 1]
-            plot_data = np.squeeze(self.data[t_start:t_stop, ..., i1:i0 + 1])
+            plot_f    = self.freqs[i1:i0]
+            plot_data = np.squeeze(self.data[t_start:t_stop, ..., i1:i0])
 
         return plot_f, plot_data
 
@@ -406,7 +406,7 @@ def cmd_tool(args=None):
     if not info_only:
         from .plotting.config import plt
 
-        print()
+        print('')
 
         if parse_args.blank_dc:
             logger.info("Blanking DC bin")

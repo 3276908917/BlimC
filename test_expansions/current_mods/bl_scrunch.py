@@ -84,7 +84,7 @@ def cmd_tool(args=None):
         opts, args = p.parse_args(args)
 
     if len(args) != 1:
-        logger.info('Please specify a ' + str(len(args)) + ' file name \nExiting.')
+        logger.info('Please specify a file name. \nExiting.')
         sys.exit()
     else:
         filename = args[0]
