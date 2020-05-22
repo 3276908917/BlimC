@@ -113,7 +113,7 @@ def plot_all(wf, t=0, f_start=None, f_stop=None, logged=False, if_id=0, kurtosis
                   65: 'KAT7'
                   }
 
-    telescope = telescopes.get(wf.header["telescope_id"], wf.header["telescope_id"])
+    telescope = telescopes.get(wf.header['telescope_id'], wf.header['telescope_id'])
 
     plot_header = "%14s: %s\n" % ("TELESCOPE_ID", telescope)
     for key in ('SRC_RAJ', 'SRC_DEJ', 'TSTART', 'NCHANS', 'NBEAMS', 'NIFS', 'NBITS'):

@@ -126,7 +126,7 @@ def read_next_header_keyword(fh):
             val = struct.unpack(dtype, fh.read(8))[0]
         if dtype == 'str':
             str_len = np.fromstring(fh.read(4), dtype='uint32')[0]
-            val = fh.read(str_len)
+            val = fh.read(str_len).decode('ascii')
         if dtype == 'angle':
             val = struct.unpack('<d', fh.read(8))[0]
             val = fil_double_to_angle(val)
@@ -289,7 +289,7 @@ def to_sigproc_keyword(keyword, value=None):
         if value_dtype is str:
             return np.int32(len(keyword)).tostring() + keyword.encode('ascii') + np.int32(len(value)).tostring() + value
         else:
-            return np.int32(len(keyword)).tostring() + keyword + value_dtype(value).tostring()
+            return np.int32(len(keyword)).tostring() + keyword.encode('ascii') + value_dtype(value).tostring()
 
 def generate_sigproc_header(f):
     """ Generate a serialzed sigproc header which can be written to disk.

@@ -17,7 +17,7 @@ def plot_time_series(wf, f_start=None, f_stop=None, if_id=0, logged=True, orient
 
     # Since the data has been squeezed, the axis for time goes away if only one bin, causing a bug with axis=1
     if len(plot_data.shape) > 1:
-        plot_data = plot_data.mean(axis=1)
+        plot_data = np.nanmean(plot_data, axis=1)
     else:
         plot_data = np.nanmean(plot_data)
         
