@@ -112,7 +112,7 @@ def cmd_tool(args=None):
     #Read start frequency and bandwidth from data set
     file_big = Waterfall(args.in_fname, max_load = args.max_load)
     f_min_file = file_big.header['fch1']
-    f_max_file = file_big.header['fch1'] + file_big.header['nchans'] * file_big.header[b'foff']
+    f_max_file = file_big.header['fch1'] + file_big.header['nchans'] * file_big.header['foff']
 
     if args.f_start == None:
         logger.warning('Lower frequency not given, setting to ' + str(f_min_file) + ' MHz to match file.')
